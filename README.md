@@ -1,6 +1,6 @@
 # Spring Boot with GraphQL Query, using apigen plugin Example
 
-##Requirements
+## Requirements
 You'll need 
  - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-3848520.html).
  - [Meven 3.X](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-3848520.html).
@@ -8,14 +8,14 @@ You'll need
 
 ## Frameworks used:
 - [Graphql para java](https://github.com/graphql-java/graphql-java)
-- [Graphql-apigen] (https://github.com/Distelli/graphql-apigen) 
+- [Graphql-apigen](https://github.com/Distelli/graphql-apigen) 
 - [Graphql-Spring-Boot](https://github.com/graphql-java/graphql-spring-boot)
 
 ## Book Store
 - `/book` is the REST resource which can fetch Books information
 - DataFetchers are Interfaces for RuntimeWiring of GraphQL with JpaRepository
 
-#Model configuration
+# Model configuration
 - To create a rest service on graphQl using the plugin apigen to facilitate the 
   implementation of the model in graphql and the other functionalities for queries or
   mutations of the objects.
@@ -36,25 +36,26 @@ You'll need
    - Definition of operations with which the state of a book type object can be modified
 
 ## Use mode 
-
-## Sample GraphQL Scalar Queries
--  Accessing the url `http://localhost:8080/book` you will see a view like the following
+-  Accessing the url `http://localhost:8090/book` you will see a view like the following
 
    ![CustomerDtoDefintion](images/index.png?raw=true "Index")
    
 #Query
 
 - Usage for `books`
-`{
+```
+{
    books {
      id
      isn
      title
      publishedDate
    }
- }`
+ }
+ ```
 - Result
-`{
+```
+{
    "data": {
      "books": [
        {
@@ -89,16 +90,21 @@ You'll need
        }
      ]
    }
- }`
+}
+ ```
 - Usage for `book`
-`{
+```
+{
    book(id: "4028808d680ae16901680ae174c90000") {
      id,
      title,
      publishedDate
-   }`
+   }
+}
+```
 - Result 
-`{
+```
+{
    "data": {
      "book": {
        "id": "4028808d680b062c01680b06380c0000",
@@ -106,9 +112,11 @@ You'll need
        "publishedDate": "2019-01-01"
      }
    }
- }`
+}
+ ```
 - Combination of both `book` and `books`
-`{
+```
+{
    book(id: "4028808d680ae16901680ae174c90000"){
        id,
        title,
@@ -118,10 +126,12 @@ You'll need
        id,
        isn
      }
- }`
+}
+```
  
 - Result
-`{
+```
+{
    "data": {
      "book": {
        "id": "4028808d680b062c01680b06380c0000",
@@ -151,29 +161,34 @@ You'll need
        }
      ]
    }
- }`
+}
+```
  
  #Mutations
  
  - Usage for `createBook`
  
- `mutation($book: InputCreateBook) {
+ ```
+ mutation($book: InputCreateBook) {
     createBook(book: $book) {
       id
       isn
       title
       publishedDate
     }
-  }`
+  }
+ ```
   
   - Variables
-  `{
+  ```
+  {
     "book": {
       "isn": "4bbce612-3f4c-4d44-a8e3-151b35f236754",
       "title": "R",
       "publishedDate": "2019-01-02"
     }
-  }`
+  }
+  ```
   
    ![CustomerDtoDefintion](images/createBook.png?raw=true "CreateBook definition")
    - Note: As shown in the example, graphql allows you to create and query the object
@@ -181,32 +196,40 @@ You'll need
    
   - Usage for `updateBook`
     
- `mutation($book: InputUpdateBook) {
+ ```
+ mutation($book: InputUpdateBook) {
     createBook(book: $book) { 
   		title
     }
-  }`
+  }
+  ```
   - Variables
-  `{
+  ```
+  {
     "book": {
       "title": "Node Developer"
     }
-  }`
+  }
+  ```
   ![CustomerDtoDefintion](images/beforeUpdate.png?raw=true "BeforeUpdate definition")
 
   ![CustomerDtoDefintion](images/updateResult.png?raw=true "UpdateResult definition")
 
  - Usage for `deleteBook`
  
- `mutation ($id: String) {
+ ```
+ mutation ($id: String) {
     deleteBook(id: $id)
-  }`
+  }
+ ```
 
   - Variables
   
-  `{
+  ```
+  {
     "id": "4028808d680b568e01680b5698b60000"
-  }`
+  }
+  ```
 
 
 
