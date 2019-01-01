@@ -30,6 +30,7 @@ You'll need
    ```   
    - Definition of the book object with its corresponding attributes.
 
+
     ```
     # Root query
     type QueryRoot @java(package:"com.graphql.schema.library.root.query") {
@@ -38,6 +39,7 @@ You'll need
     }
     ```   
    - Definition of the queries that can be made about the object.
+
 
     ```
     # Entry object to group the properties of a book and create it
@@ -48,6 +50,7 @@ You'll need
     }   
     ```
    - Object definition with which new book type objects can be created.
+
 
     ```
     # Entry object to group the properties of a book and update it
@@ -60,6 +63,7 @@ You'll need
     ```
    - Object definition with which you can update existing objects of type book
 
+
     ```
     # Operations on books
     type Mutation @java(package:"com.graphql.schema.library.mutation") {
@@ -69,6 +73,7 @@ You'll need
     }
     ```
    - Definition of operations with which the state of a book type object can be modified
+  
    
    ## Note: With the annotation @java(package: "") we indicate to the apigen plugin where we want it to generate the sources.
 
@@ -201,7 +206,7 @@ You'll need
 }
 ```
  
- #Mutations
+ # Mutations
  
  - Usage for `createBook`
  
