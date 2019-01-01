@@ -5,8 +5,6 @@ import com.graphql.springbootexample.persistence.model.BookEntity;
 import com.graphql.springbootexample.service.mapper.IBookMapper;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

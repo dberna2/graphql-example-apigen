@@ -3,6 +3,7 @@ package com.graphql.springbootexample.facade.resolver.book.mutation;
 import com.graphql.schema.library.book.Book;
 import com.graphql.schema.library.mutation.Mutation;
 import com.graphql.springbootexample.service.book.IBookService;
+import graphql.GraphQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class BookMutationImpl implements Mutation {
     }
 
     @Override
-    public Boolean deleteBook(DeleteBookArgs args) {
+    public Boolean deleteBook(DeleteBookArgs args) throws GraphQLException {
         return bookService.delete(args.getId());
     }
 

@@ -5,7 +5,6 @@ import com.graphql.springbootexample.persistence.repository.BookRepository;
 import graphql.schema.GraphQLObjectType;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.GraphQLType;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -14,7 +13,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import javax.inject.Provider;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -86,9 +84,7 @@ public class GraphqlConfiguration {
 	 * @return
 	 */
 	private Map<String, GraphQLType> getGraphqlTypes(List<Provider<? extends GraphQLType>> typeList) {
-		Map<String, GraphQLType> types = typeList.stream().map(Provider::get)
-				.collect(Collectors.toMap(GraphQLType::getName, Function.identity()));
-		return types;
+		return typeList.stream().map(Provider::get).collect(Collectors.toMap(GraphQLType::getName, Function.identity()));
 	}
 
 	@Bean

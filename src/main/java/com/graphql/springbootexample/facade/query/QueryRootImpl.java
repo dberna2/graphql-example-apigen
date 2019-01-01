@@ -5,7 +5,6 @@ import com.graphql.schema.library.root.query.QueryRoot;
 import com.graphql.springbootexample.service.book.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 

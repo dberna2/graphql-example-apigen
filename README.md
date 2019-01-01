@@ -16,31 +16,68 @@ You'll need
 - DataFetchers are Interfaces for RuntimeWiring of GraphQL with JpaRepository
 
 # Model configuration
-- To create a rest service on graphQl using the plugin apigen to facilitate the 
+- To create a rest service on graphQl using the plugin - [apigen](https://github.com/Distelli/graphql-apigen) to facilitate the 
   implementation of the model in graphql and the other functionalities for queries or
   mutations of the objects.
   
-   ![CustomerDtoDefintion](images/book.png?raw=true "Book definition")
+   ```
+   type Book @java(package:"com.graphql.schema.library.book") {
+       id: String! #Identifier of Book
+       isn: String! #Isn of Book
+       title: String! #Tittle of Book
+       publishedDate: String! #published Date of Book
+   }
+   ```   
    - Definition of the book object with its corresponding attributes.
-   
-   ![CustomerDtoDefintion](images/queryRoot.png?raw=true "QueryRoot definition")
+
+    ```
+    # Root query
+    type QueryRoot @java(package:"com.graphql.schema.library.root.query") {
+        books(id: String!): [Book]
+        book(id: String!): Book
+    }
+    ```   
    - Definition of the queries that can be made about the object.
-   
-   ![CustomerDtoDefintion](images/inputCreateBook.png?raw=true "InputCreateBook definition")
+
+    ```
+    # Entry object to group the properties of a book and create it
+    input InputCreateBook @java(package:"com.graphql.schema.library.mutation") {
+       isn: String!
+       title: String!
+       publishedDate: String!
+    }   
+    ```
    - Object definition with which new book type objects can be created.
 
-   ![CustomerDtoDefintion](images/inputUpdateBook.png?raw=true "InputUpdateBook definition")
+    ```
+    # Entry object to group the properties of a book and update it
+    input InputUpdateBook @java(package:"com.graphql.schema.library.mutation") {
+        id: String!
+        isn: String!
+        title: String
+        publishedDate: String
+    }
+    ```
    - Object definition with which you can update existing objects of type book
 
-   ![CustomerDtoDefintion](images/mutations.png?raw=true "Mutations definition")
+    ```
+    # Operations on books
+    type Mutation @java(package:"com.graphql.schema.library.mutation") {
+        createBook(book: InputCreateBook!): Book
+        deleteBook(id: String!): Boolean
+        updateBook(book: InputUpdateBook!): Book
+    }
+    ```
    - Definition of operations with which the state of a book type object can be modified
+   
+   ## Note: With the annotation @java(package: "") we indicate to the apigen plugin where we want it to generate the sources.
 
 ## Use mode 
 -  Accessing the url `http://localhost:8090/book` you will see a view like the following
 
    ![CustomerDtoDefintion](images/index.png?raw=true "Index")
    
-#Query
+# Query
 
 - Usage for `books`
 ```
@@ -191,9 +228,7 @@ You'll need
   ```
   
    ![CustomerDtoDefintion](images/createBook.png?raw=true "CreateBook definition")
-   - Note: As shown in the example, graphql allows you to create and query the object
-     created in the same request.
-   
+
   - Usage for `updateBook`
     
  ```
@@ -214,6 +249,10 @@ You'll need
   ![CustomerDtoDefintion](images/beforeUpdate.png?raw=true "BeforeUpdate definition")
 
   ![CustomerDtoDefintion](images/updateResult.png?raw=true "UpdateResult definition")
+  
+  - Note: As shown in the example, graphql allows you to create and query the object
+    created in the same request.
+     
 
  - Usage for `deleteBook`
  

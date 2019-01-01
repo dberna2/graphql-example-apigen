@@ -6,21 +6,18 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Clase base para los resolvers con la implementación por defecto
- * 
- *
+ * Base class for resolvers with the default implementation
  */
 public abstract class BaseResolver<T>  {
 
 	/**
-	 * Resuelve la obtención de los datos con la implementación por defecto  
+	 * Resolves obtaining the data with the default implementation
 	 * 
 	 * @param unresolvedList
 	 * @return
 	 */
 	public List<T> resolve(List<T> unresolvedList) {
 		List<T> resolvedList = new ArrayList<>();
-		/* Miramos si no es null y nos viene con valor para obtenerlo si es necesario */
 		if (!requireNonNull(unresolvedList).isEmpty()) {
 			for (T element : unresolvedList) {
 				if (element != null) {
@@ -32,13 +29,12 @@ public abstract class BaseResolver<T>  {
 	}
 
 	/**
-	 * Comprobaremos si está resuelta la entidad y si no es así obtenemos de la persistencia el "completo"
+	 * We will check if the entity is resolved and if not, we obtain the "complete" from the persistence
 	 * 
-	 * @param unresolverdEntity
+	 * @param unresolved
 	 * @return
 	 */
 	private T processElement(final T unresolved) {
-		/* Obtenemos el elemto filtrado por lo que corresponda */
 		if (unresolved.getClass().equals(unresolvedClass())) {
 			T findElement = findById(unresolved);
 			return findElement;
@@ -47,7 +43,7 @@ public abstract class BaseResolver<T>  {
 	}
 
 	/**
-	 * Clase a implementar para la obtencion de los elementos relacionados
+	 * Method to implement for the obtaining of the related elements
 	 * 
 	 * @param unresolved
 	 * @return
@@ -55,7 +51,7 @@ public abstract class BaseResolver<T>  {
 	protected abstract T findById(T unresolved);
 	
 	/**
-	 * Clase la cual indicará wue una entidad no está resuelta 
+	 * Method which indicates that an entity is not resolved
 	 * 
 	 * @return
 	 */
