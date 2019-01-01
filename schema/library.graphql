@@ -1,0 +1,34 @@
+type Book @java(package:"com.graphql.schema.library.book") {
+   id: String! #Identifier of Book
+   isn: String! #Isn of Book
+   title: String! #Tittle of Book
+   publishedDate: String! #published Date of Book
+}
+
+# Root query
+type QueryRoot @java(package:"com.graphql.schema.library.root.query") {
+    books(id: String!): [Book]
+    book(id: String!): Book
+}
+
+# Entry object to group the properties of a book and create it
+input InputCreateBook @java(package:"com.graphql.schema.library.mutation") {
+   isn: String!
+   title: String!
+   publishedDate: String!
+}
+
+# Entry object to group the properties of a book and update it
+input InputUpdateBook @java(package:"com.graphql.schema.library.mutation") {
+    id: String!
+    isn: String!
+    title: String
+    publishedDate: String
+}
+
+# Operations on books
+type Mutation @java(package:"com.graphql.schema.library.mutation") {
+    createBook(book: InputCreateBook!): Book
+    deleteBook(id: String!): Boolean
+    updateBook(book: InputUpdateBook!): Book
+}
