@@ -29,10 +29,6 @@ public class BookServiceImpl  implements IBookService {
 
         BookEntity book = repository.findOne(id);
 
-        if (book == null){
-            throw new GraphQLException("Pailas");
-        }
-
         return mapper.bookEntityToBook(book);
 
     }
@@ -71,10 +67,6 @@ public class BookServiceImpl  implements IBookService {
     public Boolean delete(String id) throws GraphQLException{
 
         BookEntity book = repository.findOne(id);
-
-        if (book == null){
-            throw new GraphQLException("sdsdsdsd");
-        }
 
         Preconditions.checkNotNull(book, "Book not found");
 

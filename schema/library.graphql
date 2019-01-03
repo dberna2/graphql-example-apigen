@@ -7,7 +7,7 @@ type Book @java(package:"com.graphql.schema.library.book") {
 
 # Root query
 type QueryRoot @java(package:"com.graphql.schema.library.root.query") {
-    books(id: String!): [Book]
+    books: [Book]
     book(id: String!): Book
 }
 

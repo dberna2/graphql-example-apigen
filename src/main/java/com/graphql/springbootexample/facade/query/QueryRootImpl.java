@@ -16,7 +16,7 @@ public class QueryRootImpl implements QueryRoot {
     private IBookService bookService;
 
     @Override
-    public List<Book> books(BooksArgs args) {
+    public List<Book> getBooks() {
         return bookService.findAll();
     }
 
