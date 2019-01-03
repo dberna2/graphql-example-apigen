@@ -7,7 +7,7 @@ You'll need
  - [lombok plugin](https://plugins.jetbrains.com/plugin/6317-lombok-plugin).
 
 ## Frameworks used:
-- [Graphql para java](https://github.com/graphql-java/graphql-java)
+- [Graphql for java](https://github.com/graphql-java/graphql-java)
 - [Graphql-apigen](https://github.com/Distelli/graphql-apigen) 
 - [Graphql-Spring-Boot](https://github.com/graphql-java/graphql-spring-boot)
 
